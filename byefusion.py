@@ -103,7 +103,7 @@ def to_ovf(vmw_path, out_dir="/tmp"):
                         stdout=PIPE, 
                         stderr=STDOUT)
         message = result.communicate()
-        if not 'SUCCESS' in message[0]:
+        if not b'SUCCESS' in message[0]:
             raise(Exception(message[0]))
         print('DONE! Phew.')
         return  target_p
@@ -128,4 +128,5 @@ if __name__ == '__main__':
         fix_sha(ovf)
         print("Conversion completed. Import appliance in VirtualBox now (you will have to disable network cards)")
     except Exception as e:
+        print(e)
         raise
